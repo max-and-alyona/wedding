@@ -1,0 +1,1361 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Алёна & Максим — приглашение</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Marck+Script&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%}
+
+:root{
+  --ink:#40362f;
+  --line:rgba(78,57,43,.23);
+  --accent:#9f6c67;
+  --craft1:#ead5aa;
+  --craft2:#dfc28c;
+}
+
+body{
+  font-family:"Playfair Display",Georgia,serif;
+  color:var(--ink);
+  background:#d8c198;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:
+    linear-gradient(rgba(25,14,8,.10),rgba(25,14,8,.22)),
+    url("images/table-bg.jpg") center/cover no-repeat;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at center,rgba(255,235,209,.17),transparent 55%),
+    radial-gradient(ellipse at center,transparent 54%,rgba(13,7,4,.35) 100%);
+}
+
+.hidden{display:none!important}
+
+.scene{
+  min-height:100dvh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:60px 18px 48px;
+}
+
+.screen{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.album{
+  position:relative;
+  width:min(76vw,820px);
+  aspect-ratio:16/9;
+  perspective:1800px;
+  transform:rotate(-.6deg);
+}
+
+.album::before{
+  content:"";
+  position:absolute;
+  left:2%;
+  right:1%;
+  bottom:-11%;
+  height:22%;
+  z-index:0;
+  filter:blur(20px);
+  background:radial-gradient(ellipse,rgba(0,0,0,.46),rgba(0,0,0,.12) 44%,transparent 74%);
+}
+
+.album::after{
+  content:"";
+  position:absolute;
+  inset:17px -16px -20px 20px;
+  z-index:1;
+  background:repeating-linear-gradient(to bottom,#f4e7d2 0 4px,#dfc9aa 5px 7px);
+  box-shadow:0 18px 30px rgba(0,0,0,.19);
+}
+
+.sheet-under{
+  position:absolute;
+  inset:8px -7px -10px 10px;
+  z-index:2;
+  background:linear-gradient(#fff3e1,#e2c9a8);
+  box-shadow:0 10px 21px rgba(0,0,0,.14);
+}
+
+.book{
+  position:absolute;
+  inset:0;
+  z-index:5;
+  overflow:hidden;
+  background:linear-gradient(145deg,#fdf5e8,#ead9bf);
+  box-shadow:
+    0 27px 48px rgba(0,0,0,.30),
+    inset 0 1px rgba(255,255,255,.8),
+    inset -18px 0 25px rgba(111,78,54,.14),
+    inset 0 0 0 1px rgba(76,55,42,.18);
+}
+
+.book::after{
+  content:"";
+  position:absolute;
+  top:12px;
+  bottom:12px;
+  right:-15px;
+  width:25px;
+  z-index:1;
+  background:repeating-linear-gradient(to bottom,#f6e9d4 0 4px,#dec39c 5px 7px);
+  box-shadow:8px 0 15px rgba(0,0,0,.16),inset 1px 0 rgba(255,255,255,.44);
+}
+
+.book-inner{
+  position:absolute;
+  inset:15px;
+  z-index:2;
+  overflow:hidden;
+  background:linear-gradient(135deg,var(--craft1),var(--craft2));
+  box-shadow:0 10px 21px rgba(73,52,39,.12),inset 0 1px rgba(255,255,255,.38);
+}
+
+#currentContent{
+  height:100%;
+}
+
+.binding{
+  position:absolute;
+  left:-18px;
+  top:5%;
+  bottom:5%;
+  width:50px;
+  z-index:24;
+  pointer-events:none;
+  filter:drop-shadow(8px 9px 6px rgba(0,0,0,.26));
+}
+
+.binding::before{
+  content:"";
+  position:absolute;
+  left:20px;
+  top:0;
+  bottom:0;
+  width:6px;
+  background:linear-gradient(90deg,#201715,#93766a 48%,#271b18);
+}
+
+.ring{
+  position:absolute;
+  left:0;
+  width:48px;
+  height:19px;
+  border:4px solid #403029;
+  border-left-color:#271d19;
+  border-right-color:#aa8b7d;
+  border-radius:50%;
+  box-shadow:5px 6px 6px rgba(0,0,0,.20),inset 0 0 0 1px rgba(255,232,204,.24);
+}
+
+.ring:nth-child(1){top:2%}
+.ring:nth-child(2){top:14%}
+.ring:nth-child(3){top:26%}
+.ring:nth-child(4){top:38%}
+.ring:nth-child(5){top:50%}
+.ring:nth-child(6){top:62%}
+.ring:nth-child(7){top:74%}
+.ring:nth-child(8){top:86%}
+
+.cover-img,.back-img,.page-img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+}
+
+.page-img{
+  object-fit:contain;
+  background:linear-gradient(135deg,var(--craft1),var(--craft2));
+}
+
+.cover-lid{
+  position:absolute;
+  inset:0;
+  z-index:4;
+  transform-origin:left center;
+  transform-style:preserve-3d;
+}
+
+.cover-lid.opening{
+  animation:openCover .8s cubic-bezier(.38,.04,.12,1) forwards;
+}
+
+@keyframes openCover{
+  0%{
+    transform:rotateY(0);
+    opacity:1;
+  }
+  100%{
+    transform:rotateY(-112deg);
+    opacity:.18;
+  }
+}
+
+.cover-open{
+  position:absolute;
+  inset:0;
+  z-index:10;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+}
+
+.cover-note{
+  position:absolute;
+  left:50%;
+  bottom:6%;
+  transform:translateX(-50%) rotate(-1deg);
+  z-index:11;
+  max-width:78%;
+  font-family:"Marck Script",cursive;
+  font-size:21px;
+  line-height:1.05;
+  text-align:center;
+  color:#664640;
+  padding:8px 14px 9px;
+  background:rgba(255,245,222,.84);
+  border:1px solid rgba(114,81,77,.28);
+  box-shadow:0 7px 16px rgba(71,47,30,.16);
+  pointer-events:none;
+}
+
+.sound{
+  position:absolute;
+  top:-40px;
+  right:0;
+  z-index:40;
+  border:0;
+  background:#f4e8d7;
+  color:#73514d;
+  padding:8px 12px;
+  font-family:"DM Mono",monospace;
+  font-size:10px;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  cursor:pointer;
+  box-shadow:0 8px 14px rgba(0,0,0,.16);
+}
+
+.sound.on{
+  background:var(--accent);
+  color:#fffaf4;
+}
+
+.edge{
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:16%;
+  z-index:25;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+}
+
+.edge.left{left:0}
+.edge.right{right:0}
+
+.edge-note{
+  position:absolute;
+  bottom:10px;
+  z-index:26;
+  font-family:"Marck Script",cursive;
+  font-size:19px;
+  color:rgba(99,73,65,.46);
+  pointer-events:none;
+}
+
+.edge-note.left{
+  left:16px;
+  transform:rotate(-2deg);
+}
+
+.edge-note.right{
+  right:16px;
+  transform:rotate(2deg);
+}
+
+.book.form-mode .edge{
+  width:7%;
+  z-index:8;
+}
+
+.book.form-mode .edge-note{
+  opacity:.25;
+}
+
+.flip{
+  display:none;
+  position:absolute;
+  inset:0;
+  z-index:18;
+  pointer-events:none;
+  transform-style:preserve-3d;
+  transform-origin:left center;
+}
+
+.flip.next{
+  display:block;
+  animation:flipnext .62s cubic-bezier(.45,.02,.18,1) forwards;
+}
+
+.flip.prev{
+  display:block;
+  transform-origin:right center;
+  animation:flipprev .62s cubic-bezier(.45,.02,.18,1) forwards;
+}
+
+.flip-face{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  backface-visibility:hidden;
+  transform-style:preserve-3d;
+  background:
+    radial-gradient(circle at 20% 12%,rgba(255,255,255,.42),transparent 22%),
+    linear-gradient(145deg,#fdf5e8,#ead9bf);
+  box-shadow:
+    0 17px 31px rgba(0,0,0,.19),
+    inset 0 1px rgba(255,255,255,.72),
+    inset -15px 0 20px rgba(111,78,54,.12);
+}
+
+.flip-face::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,rgba(0,0,0,.25),transparent 22%,transparent 70%,rgba(255,255,255,.15));
+}
+
+.flip-face.back{
+  transform:rotateY(180deg);
+}
+
+.flip-inner{
+  position:absolute;
+  inset:15px;
+  overflow:hidden;
+  background:linear-gradient(135deg,var(--craft1),var(--craft2));
+}
+
+@keyframes flipnext{
+  0%{
+    transform:rotateY(0);
+    filter:brightness(1);
+  }
+  48%{
+    transform:rotateY(-92deg);
+    filter:brightness(.73);
+  }
+  100%{
+    transform:rotateY(-180deg);
+    filter:brightness(1);
+  }
+}
+
+@keyframes flipprev{
+  0%{
+    transform:rotateY(0);
+    filter:brightness(1);
+  }
+  48%{
+    transform:rotateY(92deg);
+    filter:brightness(.73);
+  }
+  100%{
+    transform:rotateY(180deg);
+    filter:brightness(1);
+  }
+}
+
+.scroll-page{
+  width:100%;
+  height:100%;
+  overflow-y:auto;
+  overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior:contain;
+  touch-action:pan-y;
+  padding:22px;
+  background:
+    linear-gradient(rgba(234,213,170,.72),rgba(223,194,140,.77)),
+    repeating-linear-gradient(90deg,rgba(121,84,55,.035) 0 1px,transparent 1px 6px);
+}
+
+.insert{
+  position:relative;
+  width:min(82%,650px);
+  min-height:calc(100% - 4px);
+  margin:0 auto 20px;
+  padding:25px;
+  background:linear-gradient(170deg,#fffdf8,#f1e3cd);
+  box-shadow:
+    0 24px 35px rgba(73,47,31,.24),
+    0 6px 10px rgba(73,47,31,.11),
+    inset 0 1px rgba(255,255,255,.84);
+  transform:rotate(.7deg);
+}
+
+.insert::before{
+  content:"";
+  position:absolute;
+  top:-12px;
+  left:50%;
+  transform:translateX(-50%) rotate(-2deg);
+  width:96px;
+  height:26px;
+  background:linear-gradient(90deg,rgba(230,210,179,.63),rgba(246,227,198,.74),rgba(230,210,179,.63));
+  box-shadow:0 5px 8px rgba(0,0,0,.10);
+}
+
+.insert::after{
+  content:"";
+  position:absolute;
+  inset:10px -10px -12px 12px;
+  z-index:-1;
+  background:#e9d6b8;
+  transform:rotate(-1.2deg);
+  box-shadow:0 15px 21px rgba(73,47,31,.13);
+}
+
+.paper-fold{
+  position:absolute;
+  right:0;
+  bottom:0;
+  width:50px;
+  height:50px;
+  background:linear-gradient(135deg,transparent 0 49%,#d8b98f 50%,#fff9ef 100%);
+  box-shadow:-4px -4px 9px rgba(85,54,33,.09);
+}
+
+.insert h2{
+  margin:6px 0 7px;
+  text-align:center;
+  font-family:"Marck Script",cursive;
+  font-size:45px;
+  font-weight:400;
+  color:#805550;
+  line-height:.9;
+}
+
+.lead{
+  margin:0 auto 9px;
+  text-align:center;
+  max-width:560px;
+  font-size:17px;
+  line-height:1.16;
+  color:#625048;
+}
+
+.deadline{
+  margin:0 auto 14px;
+  text-align:center;
+  font-family:"DM Mono",monospace;
+  font-size:10px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#8f6862;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px 12px;
+}
+
+.field{
+  padding:7px 0 8px;
+  border-top:1px solid var(--line);
+}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+.label{
+  display:block;
+  margin-bottom:5px;
+  font-size:16px;
+  line-height:1.1;
+}
+
+input[type=text],textarea{
+  width:100%;
+  background:transparent;
+  border:0;
+  border-bottom:1px solid rgba(77,54,39,.36);
+  outline:0;
+  padding:5px 1px;
+  font:16px "Playfair Display",Georgia,serif;
+  color:var(--ink);
+}
+
+textarea{
+  min-height:54px;
+  resize:vertical;
+}
+
+.option{
+  display:flex;
+  gap:7px;
+  align-items:flex-start;
+  margin:5px 0;
+  font-size:15px;
+  line-height:1.12;
+}
+
+.option input{
+  margin-top:4px;
+  accent-color:var(--accent);
+}
+
+.send,.nav-text{
+  display:block;
+  margin:14px auto 0;
+  padding:8px 0;
+  border:0;
+  border-bottom:1px solid #845b56;
+  background:transparent;
+  color:#845b56;
+  font-family:"Marck Script",cursive;
+  font-size:24px;
+  cursor:pointer;
+}
+
+.nav-text{
+  font-size:19px;
+  margin-top:16px;
+}
+
+.message{
+  min-height:18px;
+  margin-top:8px;
+  text-align:center;
+  font-size:14px;
+  color:#8a625d;
+}
+
+.gift-copy{
+  max-width:560px;
+  margin:16px auto 20px;
+  font-size:19px;
+  line-height:1.22;
+  color:#55443b;
+}
+
+.gift-link{
+  display:inline-block;
+  color:#805550;
+  text-decoration:none;
+  border-bottom:1px solid #805550;
+  padding-bottom:5px;
+  font-family:"Marck Script",cursive;
+  font-size:26px;
+}
+
+.small{
+  margin-top:16px;
+  font-family:"DM Mono",monospace;
+  font-size:9px;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  color:#96776a;
+}
+
+.end-screen{
+  min-height:100dvh;
+  flex-direction:column;
+  padding:60px 18px 48px;
+  text-align:center;
+}
+
+.end-screen .album{
+  width:min(76vw,820px);
+  flex:none;
+}
+
+.end-actions{
+  margin:28px auto 0;
+  max-width:760px;
+}
+
+.count{
+  display:inline-block;
+  font-family:"DM Mono",monospace;
+  font-size:22px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  color:#fff0df;
+  text-shadow:0 2px 10px rgba(0,0,0,.40);
+  padding-bottom:5px;
+  border-bottom:1px solid rgba(255,236,215,.58);
+}
+
+.end-actions p{
+  margin:14px 0 16px;
+  color:#fff0df;
+  font-size:28px;
+  text-shadow:0 2px 10px rgba(0,0,0,.38);
+}
+
+.end-actions button{
+  background:transparent;
+  border:0;
+  border-bottom:1px solid rgba(255,236,215,.7);
+  color:#fff0df;
+  padding:4px 0;
+  margin:0 9px;
+  font-family:"Marck Script",cursive;
+  font-size:25px;
+  cursor:pointer;
+}
+
+.count-page{
+  position:absolute;
+  left:50%;
+  bottom:-35px;
+  transform:translateX(-50%);
+  font-family:"DM Mono",monospace;
+  font-size:10px;
+  letter-spacing:.08em;
+  color:#faebd8;
+  text-transform:uppercase;
+  opacity:.74;
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:6vh;
+  z-index:90;
+  transform:translateX(-50%);
+  padding:9px 14px;
+  background:#f7eee2;
+  color:#74514d;
+  font-family:"Marck Script",cursive;
+  font-size:20px;
+  box-shadow:0 13px 25px rgba(0,0,0,.22);
+  opacity:0;
+  transition:.4s;
+  pointer-events:none;
+  text-align:center;
+  max-width:88vw;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(-4px);
+}
+
+/* Вертикальный телефон: фон виден полностью, книга остаётся большой */
+@media (orientation:portrait){
+  body::before{
+    background-size:100% auto;
+    background-repeat:no-repeat;
+    background-position:center top;
+    background-color:#d8c198;
+  }
+
+  .scene{
+    padding:46px 8px 48px;
+  }
+
+  .album{
+    width:92vw;
+    max-width:820px;
+  }
+}
+
+/* Телефоны */
+@media(max-width:760px){
+  .scene{
+    padding:48px 10px 34px;
+  }
+
+  .album{
+    width:92vw;
+    aspect-ratio:16/10.2;
+  }
+
+  .book-inner,.flip-inner{
+    inset:8px;
+  }
+
+  .book::after{
+    right:-8px;
+    width:13px;
+  }
+
+  .binding{
+    left:-13px;
+    width:32px;
+  }
+
+  .binding::before{
+    left:12px;
+    width:4px;
+  }
+
+  .ring{
+    width:30px;
+    height:14px;
+    border-width:3px;
+  }
+
+  .cover-note{
+    bottom:5%;
+    max-width:84%;
+    font-size:16px;
+    padding:7px 11px 8px;
+  }
+
+  .sound{
+    top:-33px;
+    font-size:8px;
+    padding:6px 8px;
+  }
+
+  .edge{
+    width:20%;
+  }
+
+  .edge-note{
+    font-size:16px;
+  }
+
+  .edge-note.left{left:9px}
+  .edge-note.right{right:9px}
+
+  .scroll-page{
+    padding:10px;
+  }
+
+  .insert{
+    width:96%;
+    min-height:auto;
+    margin:14px auto 24px;
+    padding:15px 13px 26px;
+    transform:rotate(.3deg);
+  }
+
+  .insert::before{
+    top:-8px;
+    width:64px;
+    height:17px;
+  }
+
+  .insert::after{
+    inset:7px -6px -8px 7px;
+  }
+
+  .paper-fold{
+    width:38px;
+    height:38px;
+  }
+
+  .insert h2{
+    font-size:30px;
+  }
+
+  .lead{
+    font-size:14px;
+    line-height:1.18;
+  }
+
+  .deadline{
+    font-size:8px;
+    margin-bottom:8px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+    gap:5px;
+  }
+
+  .field.full{
+    grid-column:1;
+  }
+
+  .label{
+    font-size:14px;
+    line-height:1.13;
+  }
+
+  .option{
+    font-size:13px;
+    line-height:1.15;
+    margin:4px 0;
+  }
+
+  .option input{
+    margin-top:3px;
+  }
+
+  input[type=text],textarea{
+    font-size:14px;
+    padding:4px 1px;
+  }
+
+  textarea{
+    min-height:52px;
+  }
+
+  .send{
+    font-size:22px;
+    margin-top:11px;
+  }
+
+  .nav-text{
+    font-size:17px;
+  }
+
+  .message{
+    font-size:13px;
+  }
+
+  .gift-copy{
+    font-size:15px;
+    line-height:1.22;
+    margin:13px auto 16px;
+  }
+
+  .gift-link{
+    font-size:21px;
+  }
+
+  .small{
+    font-size:7px;
+  }
+
+  .count-page{
+    bottom:-27px;
+  }
+
+  .end-screen{
+    padding:52px 10px 38px;
+  }
+
+  .end-screen .album{
+    width:92vw;
+  }
+
+  .count{
+    font-size:16px;
+    letter-spacing:.04em;
+  }
+
+  .end-actions p{
+    font-size:20px;
+  }
+
+  .end-actions button{
+    font-size:21px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" preload="none" loop playsinline>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="scene">
+
+<section id="coverScreen" class="screen">
+  <div class="album">
+    <div class="sheet-under"></div>
+
+    <div class="binding">
+      <span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span>
+      <span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span>
+    </div>
+
+    <div class="book">
+      <div id="coverLid" class="cover-lid">
+        <div class="book-inner">
+          <img class="cover-img" src="images/cover-front.png" alt="Обложка приглашения">
+        </div>
+      </div>
+
+      <div class="cover-note">Если вы с телефона — поверните его, так будет удобнее</div>
+
+      <button class="cover-open" onclick="openBook()" aria-label="Открыть книгу"></button>
+    </div>
+  </div>
+</section>
+
+<section id="bookScreen" class="screen hidden">
+  <div class="album">
+    <div class="sheet-under"></div>
+
+    <div class="binding">
+      <span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span>
+      <span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span>
+    </div>
+
+    <button id="soundTab" class="sound" onclick="toggleMusic()">звук: выкл</button>
+
+    <div id="book" class="book">
+      <button class="edge left" onclick="prevPage()" aria-label="Назад"></button>
+      <button class="edge right" onclick="nextPage()" aria-label="Дальше"></button>
+
+      <div class="edge-note left">← назад</div>
+      <div class="edge-note right">дальше →</div>
+
+      <div class="book-inner">
+        <div id="currentContent"></div>
+      </div>
+
+      <div id="flip" class="flip">
+        <div class="flip-face">
+          <div id="flipFront" class="flip-inner"></div>
+        </div>
+
+        <div class="flip-face back">
+          <div id="flipBack" class="flip-inner"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="pageCount" class="count-page">лист 1 из 12</div>
+  </div>
+</section>
+
+<section id="endScreen" class="screen end-screen hidden">
+  <div class="album">
+    <div class="sheet-under"></div>
+
+    <div class="binding">
+      <span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span>
+      <span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span>
+    </div>
+
+    <div class="book">
+      <div class="book-inner">
+        <img class="back-img" src="images/cover-back.png" alt="Задняя обложка">
+      </div>
+    </div>
+  </div>
+
+  <div class="end-actions">
+    <div id="endCountdown" class="count">До свадьбы осталось...</div>
+    <p>Мы очень ждём этот день. И вас рядом.</p>
+    <button onclick="goToRSVP()">к анкете</button>
+    <button onclick="restartBook()">с начала</button>
+  </div>
+</section>
+
+</div>
+
+<div id="toast" class="toast">Если вы с телефона — поверните его, так будет удобнее</div>
+
+<script>
+const GOOGLE_SCRIPT_URL="https://script.google.com/macros/s/AKfycbw1YZuGQrfyh_iNuKfGg0YEdHaww1lIotbvO_tBO1ETrDlylhKQLfuEIgq4UASKvrJj/exec";
+
+const WEDDING_DATE=new Date("2026-08-02T00:00:00");
+
+const pages=[
+  {type:"image",src:"images/page0.png"},
+  {type:"image",src:"images/page1.png"},
+  {type:"image",src:"images/page2.png"},
+  {type:"image",src:"images/page3.png"},
+  {type:"image",src:"images/page4.png"},
+  {type:"image",src:"images/page5.png"},
+  {type:"image",src:"images/page6.png"},
+  {type:"image",src:"images/page7.png"},
+  {type:"image",src:"images/flowers.png"},
+  {type:"image",src:"images/dress-code.png"},
+  {type:"rsvp"},
+  {type:"gift"}
+];
+
+["images/table-bg.jpg","images/cover-front.png","images/page0.png"].forEach(src=>{
+  const image=new Image();
+  image.src=src;
+});
+
+function preloadRest(){
+  [
+    "images/page1.png",
+    "images/page2.png",
+    "images/page3.png",
+    "images/page4.png",
+    "images/page5.png",
+    "images/page6.png",
+    "images/page7.png",
+    "images/flowers.png",
+    "images/dress-code.png",
+    "images/cover-back.png"
+  ].forEach(src=>{
+    const image=new Image();
+    image.src=src;
+  });
+}
+
+let current=0;
+let flipping=false;
+let preloaded=false;
+let touchStart=0;
+let touchInScroll=false;
+
+const coverScreen=document.getElementById("coverScreen");
+const bookScreen=document.getElementById("bookScreen");
+const endScreen=document.getElementById("endScreen");
+const coverLid=document.getElementById("coverLid");
+const book=document.getElementById("book");
+const currentContent=document.getElementById("currentContent");
+const flip=document.getElementById("flip");
+const flipFront=document.getElementById("flipFront");
+const flipBack=document.getElementById("flipBack");
+const pageCount=document.getElementById("pageCount");
+const bgMusic=document.getElementById("bgMusic");
+const soundTab=document.getElementById("soundTab");
+const toast=document.getElementById("toast");
+const endCountdown=document.getElementById("endCountdown");
+
+function updateCountdown(){
+  const days=Math.max(0,Math.ceil((WEDDING_DATE-new Date())/86400000));
+
+  let word="дней";
+
+  if(days%10===1&&days%100!==11)word="день";
+  if([2,3,4].includes(days%10)&&![12,13,14].includes(days%100))word="дня";
+
+  endCountdown.textContent=`До свадьбы ${days} ${word}`;
+}
+
+updateCountdown();
+setInterval(updateCountdown,1800000);
+
+function showToast(){
+  toast.classList.add("show");
+  setTimeout(()=>toast.classList.remove("show"),3400);
+}
+
+function startMusic(){
+  bgMusic.play().then(()=>{
+    bgMusic.volume=.22;
+    soundTab.classList.add("on");
+    soundTab.textContent="звук: вкл";
+  }).catch(()=>{});
+}
+
+function toggleMusic(){
+  if(bgMusic.paused){
+    startMusic();
+  }else{
+    bgMusic.pause();
+    soundTab.classList.remove("on");
+    soundTab.textContent="звук: выкл";
+  }
+}
+
+function pageHTML(index){
+  const page=pages[index];
+
+  if(page.type==="image"){
+    return `<img class="page-img" src="${page.src}" alt="Страница ${index+1}">`;
+  }
+
+  if(page.type==="rsvp"){
+    return `
+      <div class="scroll-page">
+        <div class="insert">
+          <h2>Ваш ответ</h2>
+
+          <p class="lead">
+            Пожалуйста, заполните эту карточку — так нам будет легче всё красиво подготовить.
+          </p>
+
+          <p class="deadline">Ответ нужно дать до 12 июля</p>
+
+          <form id="rsvpForm" onsubmit="submitRSVP(event)">
+            <div class="form-grid">
+
+              <div class="field full">
+                <label class="label">Как вас подписать?</label>
+                <input type="text" name="name" placeholder="Имя и фамилия" required>
+              </div>
+
+              <div class="field">
+                <span class="label">Будете с нами?</span>
+                <label class="option"><input type="radio" name="presence" value="Да, буду" required>Да, буду</label>
+                <label class="option"><input type="radio" name="presence" value="К сожалению, не смогу">К сожалению, не смогу</label>
+              </div>
+
+              <div class="field">
+                <span class="label">Будете на машине?</span>
+                <label class="option"><input type="radio" name="car" value="Да" required>Да</label>
+                <label class="option"><input type="radio" name="car" value="Нет">Нет</label>
+              </div>
+
+              <div class="field">
+                <span class="label">Сможете кого-то подвезти?</span>
+                <label class="option"><input type="radio" name="canDrive" value="Да" required>Да</label>
+                <label class="option"><input type="radio" name="canDrive" value="Нет">Нет</label>
+                <label class="option"><input type="radio" name="canDrive" value="Буду без машины">Буду без машины</label>
+              </div>
+
+              <div class="field full">
+                <span class="label">Есть ли у вас желание и возможность помочь нам в субботу или воскресенье?</span>
+                <label class="option"><input type="checkbox" name="helpDays" value="Смогу в субботу">Смогу в субботу</label>
+                <label class="option"><input type="checkbox" name="helpDays" value="Смогу в воскресенье">Смогу в воскресенье</label>
+              </div>
+
+              <div class="field full">
+                <label class="label">
+                  Комментарий — если сможете кого-то подвезти, напишите, пожалуйста, сколько у вас свободных мест в машине
+                </label>
+                <textarea name="comment" placeholder="Например: смогу подвезти 2 человек; есть вопросы; важные детали..."></textarea>
+              </div>
+
+            </div>
+
+            <button class="send" type="submit">отправить ответ</button>
+            <div id="formMessage" class="message"></div>
+          </form>
+
+          <button class="nav-text" type="button" onclick="nextPage()">к подаркам →</button>
+
+          <span class="paper-fold"></span>
+        </div>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="scroll-page">
+      <div class="insert">
+        <h2>Подарки</h2>
+
+        <p class="gift-copy">
+          Ваше присутствие — самое главное для нас.
+          Но если вам захочется порадовать нас чем-то особенным,
+          мы собрали несколько идей в одном месте.
+        </p>
+
+        <a class="gift-link" href="https://podarkus.ru/list/2215933?utm_source=share&utm_medium=friends&utm_campaign=wishlist" target="_blank">
+          посмотреть идеи подарков
+        </a>
+
+        <div class="small">вернуться можно по левому краю книги</div>
+
+        <button class="nav-text" type="button" onclick="closeBook()">закрыть книгу →</button>
+
+        <span class="paper-fold"></span>
+      </div>
+    </div>
+  `;
+}
+
+function render(){
+  currentContent.innerHTML=pageHTML(current);
+  book.classList.toggle("form-mode",pages[current].type!=="image");
+  pageCount.textContent=`лист ${current+1} из ${pages.length}`;
+}
+
+function openBook(){
+  coverLid.classList.add("opening");
+
+  setTimeout(()=>{
+    coverScreen.classList.add("hidden");
+    bookScreen.classList.remove("hidden");
+    endScreen.classList.add("hidden");
+
+    current=0;
+    render();
+    startMusic();
+    showToast();
+
+    if(!preloaded){
+      preloaded=true;
+      setTimeout(preloadRest,500);
+    }
+
+    window.scrollTo(0,0);
+  },680);
+}
+
+function nextPage(){
+  if(flipping)return;
+
+  if(current===pages.length-1){
+    closeBook();
+    return;
+  }
+
+  flipping=true;
+
+  const old=current;
+  const next=current+1;
+
+  flipFront.innerHTML=pageHTML(old);
+  flipBack.innerHTML=pageHTML(next);
+
+  current=next;
+  render();
+
+  flip.className="flip";
+  void flip.offsetWidth;
+  flip.classList.add("next");
+
+  setTimeout(()=>{
+    flip.className="flip";
+    flipping=false;
+  },620);
+}
+
+function prevPage(){
+  if(flipping||current<=0)return;
+
+  flipping=true;
+
+  const old=current;
+  const prev=current-1;
+
+  flipFront.innerHTML=pageHTML(old);
+  flipBack.innerHTML=pageHTML(prev);
+
+  current=prev;
+  render();
+
+  flip.className="flip";
+  void flip.offsetWidth;
+  flip.classList.add("prev");
+
+  setTimeout(()=>{
+    flip.className="flip";
+    flipping=false;
+  },620);
+}
+
+function closeBook(){
+  if(flipping)return;
+
+  flipping=true;
+
+  bookScreen.style.transition="opacity .5s ease,transform .5s ease";
+  bookScreen.style.opacity="0";
+  bookScreen.style.transform="scale(.88)";
+
+  setTimeout(()=>{
+    bookScreen.classList.add("hidden");
+    bookScreen.style.transition="";
+    bookScreen.style.opacity="";
+    bookScreen.style.transform="";
+
+    endScreen.classList.remove("hidden");
+    updateCountdown();
+
+    flipping=false;
+    window.scrollTo(0,0);
+  },520);
+}
+
+function restartBook(){
+  endScreen.classList.add("hidden");
+  coverLid.classList.remove("opening");
+  coverScreen.classList.remove("hidden");
+
+  current=0;
+
+  window.scrollTo(0,0);
+}
+
+function goToRSVP(){
+  endScreen.classList.add("hidden");
+  bookScreen.classList.remove("hidden");
+
+  current=10;
+  render();
+
+  window.scrollTo(0,0);
+}
+
+function submitRSVP(event){
+  event.preventDefault();
+
+  const form=event.target;
+  const message=form.querySelector("#formMessage");
+  const data=new FormData(form);
+
+  const helpDays=data.getAll("helpDays");
+
+  data.delete("helpDays");
+  data.append("helpDays",helpDays.length?helpDays.join(", "):"Не отмечено");
+  data.append("submittedAt",new Date().toLocaleString("ru-RU"));
+
+  message.textContent="Отправляем...";
+
+  fetch(GOOGLE_SCRIPT_URL,{
+    method:"POST",
+    mode:"no-cors",
+    body:data
+  })
+  .then(()=>{
+    message.textContent="Спасибо, ваш ответ сохранён.";
+    form.reset();
+  })
+  .catch(()=>{
+    message.textContent="Не получилось отправить. Напишите нам лично.";
+  });
+}
+
+document.addEventListener("keydown",event=>{
+  if(bookScreen.classList.contains("hidden"))return;
+
+  if(event.key==="ArrowRight")nextPage();
+  if(event.key==="ArrowLeft")prevPage();
+});
+
+bookScreen.addEventListener("touchstart",event=>{
+  touchStart=event.changedTouches[0].clientX;
+
+  touchInScroll=!!event.target.closest(
+    ".scroll-page,input,textarea,label,a,button"
+  );
+},{passive:true});
+
+bookScreen.addEventListener("touchend",event=>{
+  if(touchInScroll)return;
+
+  const delta=event.changedTouches[0].clientX-touchStart;
+
+  if(Math.abs(delta)<45)return;
+
+  if(delta<0)nextPage();
+  if(delta>0)prevPage();
+},{passive:true});
+</script>
+
+</body>
+</html>
