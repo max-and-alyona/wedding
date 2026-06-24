@@ -879,6 +879,82 @@ textarea{
     font-size:21px;
   }
 }
+/* Более контрастный текст */
+:root{
+  --ink:#30251f;
+  --accent:#8f5b57;
+}
+
+.cover-note{
+  color:#4d302c;
+  border-color:rgba(83,52,45,.35);
+}
+
+.edge-note{
+  color:rgba(62,43,37,.64);
+}
+
+.insert h2{
+  color:#6f4844;
+}
+
+.lead{
+  color:#4c3b34;
+}
+
+.deadline{
+  color:#76514c;
+}
+
+.label{
+  color:#32251e;
+}
+
+.option{
+  color:#37281f;
+}
+
+input[type=text],
+textarea{
+  color:#2d211b;
+  border-bottom-color:rgba(61,43,31,.46);
+}
+
+.send,
+.nav-text{
+  color:#6d4742;
+  border-bottom-color:#6d4742;
+}
+
+.message{
+  color:#704944;
+}
+
+.gift-copy{
+  color:#3d2e26;
+}
+
+.gift-link{
+  color:#6f4844;
+  border-bottom-color:#6f4844;
+}
+
+.small{
+  color:#6d5549;
+}
+
+.sound{
+  color:#593c38;
+}
+
+/* Отдельный фон для вертикального телефона */
+@media (orientation: portrait){
+  body::before{
+    background:
+      linear-gradient(rgba(25,14,8,.06),rgba(25,14,8,.15)),
+      url("images/table-bg-vert.jpg") center/cover no-repeat;
+  }
+}
 </style>
 </head>
 
